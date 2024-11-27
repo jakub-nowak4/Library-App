@@ -1,0 +1,96 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+
+  background-color: #30343f;
+  color: #fff;
+}
+
+h1 {
+  margin: 4.5rem 0;
+  font-size: 3rem;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+.library {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-rows: auto;
+
+  place-items: center;
+  gap: 50px;
+}
+
+.book {
+  width: 350px;
+  padding: 25px;
+  border-radius: 15px;
+  background-color: #1999ee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.book-info {
+  text-align: center;
+}
+
+.book-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  line-height: 1.2em; /* Adjust based on your font size */
+  max-height: 2.4em; /* 2 lines * line-height */
+  white-space: normal;
+}
+
+.book-info p,
+label {
+  font-size: 1.35rem;
+  margin-bottom: 5px;
+}
+
+label {
+  display: block;
+}
+
+select {
+  font-size: 1.25rem;
+}
+
+.book-img {
+  border-radius: 6px;
+  overflow: hidden;
+  height: 275px;
+  width: 200px;
+}
+
+.book-btn {
+  border: none;
+  font-size: 1.25rem;
+  margin: 15px 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
