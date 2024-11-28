@@ -41,6 +41,7 @@ img {
 
 .book {
   width: 350px;
+  max-height: 550px;
   padding: 25px;
   border-radius: 15px;
   background-color: #1999ee;
