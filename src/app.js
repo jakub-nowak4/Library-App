@@ -1,7 +1,9 @@
+import { nanoid } from "nanoid";
+
 //Selected elements
 const libraryEl = document.querySelector(".library");
 
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -18,6 +20,7 @@ Book.prototype.info = function () {
 
 function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
+  book.id = nanoid();
 
   myLibrary.push(book);
 }
@@ -35,7 +38,7 @@ function createBookElement(book) {
   const bookImgContainer = document.createElement("div");
   bookImgContainer.className = "book-img";
   const img = document.createElement("img");
-  img.src = "./test.jpg"; // Placeholder image source
+  img.src = "./hobbit.jpg"; // Placeholder image source
   img.alt = book.title;
   bookImgContainer.appendChild(img);
 
@@ -83,6 +86,20 @@ function createBookElement(book) {
 
   bookContainer.appendChild(bookImgContainer);
   bookContainer.appendChild(bookInfo);
+
+  select.addEventListener("change", (e) => {
+    book.read = e.target.value === "true";
+  });
+
+  btn.addEventListener("click", (e) => {
+    const bookId = e.target.id;
+
+    //Delete this book from array
+    myLibrary = myLibrary.filter((b) => b.id !== book.id);
+
+    //Delete from DOM
+    bookContainer.remove();
+  });
 
   return bookContainer;
 }
