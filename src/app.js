@@ -3,6 +3,9 @@ import { nanoid } from "nanoid";
 //Selected elements
 const libraryEl = document.querySelector(".library");
 
+const addBookBtn = document.querySelector("#add-book");
+const clearListBtn = document.querySelector("#clear-list");
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -112,8 +115,22 @@ function generateLibrary() {
   });
 }
 
+function clearLibrary() {
+  myLibrary = [];
+  libraryEl.innerHTML = "";
+}
+
 //Example Data
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
 
 generateLibrary();
+
+//Events
+
+//TODO
+addBookBtn.addEventListener("click", () => {
+  console.log("Add book");
+});
+
+clearListBtn.addEventListener("click", clearLibrary);

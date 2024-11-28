@@ -21,8 +21,9 @@ body {
 }
 
 h1 {
-  margin: 4.5rem 0;
-  font-size: 3rem;
+  margin: 100px 0 15px;
+  font-size: 3.5rem;
+  text-transform: uppercase;
 }
 
 img {
@@ -30,6 +31,7 @@ img {
   object-fit: cover;
 }
 .library {
+  margin-top: 25px;
   width: 80vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
@@ -37,6 +39,20 @@ img {
 
   place-items: center;
   gap: 50px;
+}
+
+.library-btns {
+  display: flex;
+  gap: 15px;
+}
+
+#add-book {
+  background-color: #16db65;
+  color: #fff;
+}
+
+#clear-list i {
+  color: #ef233c;
 }
 
 .book {
@@ -88,10 +104,12 @@ select {
   width: 200px;
 }
 
-.book-btn {
+.book-btn,
+.library-btn {
   border: none;
   font-size: 1.25rem;
   margin: 15px 0;
   padding: 4px 8px;
   border-radius: 6px;
+  cursor: pointer;
 }
