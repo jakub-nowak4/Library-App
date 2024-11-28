@@ -113,3 +113,47 @@ select {
   border-radius: 6px;
   cursor: pointer;
 }
+.book-btn-alt {
+  width: 100%;
+  padding: 10px 5px;
+
+  font-weight: bold;
+}
+
+/* Modal */
+
+.add-book-modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  background-color: #30343fe3;
+}
+
+.add-book-modal form {
+  margin: 0 auto;
+  max-width: 350px;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.add-book-modal h3 {
+  text-transform: uppercase;
+}
+
+.add-book-modal div {
+  width: 100%;
+}
+
+.add-book-modal input {
+  font-size: 1.35rem;
+  width: 100%;
+  padding: 10px 5px;
+}

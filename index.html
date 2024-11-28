@@ -27,5 +27,61 @@
       </button>
     </div>
     <div class="library"></div>
+
+    <div class="add-book-modal">
+      <form method="dialog">
+        <h3>Add new book:</h3>
+        <div>
+          <label for="title"></label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Title"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="author"></label>
+          <input
+            type="text"
+            name="author"
+            id="title"
+            placeholder="Author"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="pages"></label>
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="Pages"
+            min="0"
+            required
+          />
+        </div>
+
+        <div id="read">
+          <label for="read"
+            >Read:
+            <select name="read" id="read" required>
+              <option value="true">Yes</option>
+              <option value="false" selected>No</option>
+            </select>
+          </label>
+        </div>
+
+        <div>
+          <label for="book-img">Book Image</label>
+          <input type="file" name="book-img" id="book-img" />
+        </div>
+
+        <button class="book-btn book-btn-alt" type="submit">Submit</button>
+      </form>
+    </div>
   </body>
 </html>

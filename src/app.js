@@ -6,6 +6,10 @@ const libraryEl = document.querySelector(".library");
 const addBookBtn = document.querySelector("#add-book");
 const clearListBtn = document.querySelector("#clear-list");
 
+const modal = document.querySelector(".add-book-modal");
+
+const form = document.querySelector(".add-book-modal form");
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -120,6 +124,15 @@ function clearLibrary() {
   libraryEl.innerHTML = "";
 }
 
+function showModal() {
+  modal.style.cssText = "display:block;";
+  form.reset();
+}
+
+function closeModal() {
+  modal.style.cssText = "display: none";
+}
+
 //Example Data
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
@@ -130,7 +143,12 @@ generateLibrary();
 
 //TODO
 addBookBtn.addEventListener("click", () => {
-  console.log("Add book");
+  showModal();
 });
 
 clearListBtn.addEventListener("click", clearLibrary);
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("Submitted");
+});
