@@ -12,11 +12,12 @@ const form = document.querySelector(".add-book-modal form");
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, imgSrc) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.imgSrc = imgSrc;
 }
 
 Book.prototype.info = function () {
@@ -25,11 +26,12 @@ Book.prototype.info = function () {
   }`;
 };
 
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
+function addBookToLibrary(title, author, pages, read, imgSrc) {
+  const book = new Book(title, author, pages, read, imgSrc);
   book.id = nanoid();
 
   myLibrary.push(book);
+  generateLibrary();
 }
 
 function getBooksFromLibrary() {
@@ -45,7 +47,7 @@ function createBookElement(book) {
   const bookImgContainer = document.createElement("div");
   bookImgContainer.className = "book-img";
   const img = document.createElement("img");
-  img.src = "./hobbit.jpg"; // Placeholder image source
+  img.src = book.imgSrc; // Placeholder image source
   img.alt = book.title;
   bookImgContainer.appendChild(img);
 
@@ -55,8 +57,10 @@ function createBookElement(book) {
   const heading = document.createElement("h3");
   heading.textContent = book.title;
   const author = document.createElement("p");
+  author.className = "book-author";
   author.textContent = book.author;
   const pages = document.createElement("p");
+  pages.className = "book-pages";
   pages.textContent = `Pages: ${book.pages}`;
 
   const label = document.createElement("label");
@@ -112,6 +116,7 @@ function createBookElement(book) {
 }
 
 function generateLibrary() {
+  libraryEl.innerHTML = "";
   myLibrary.forEach((book) => {
     const bookEl = createBookElement(book);
     //Book added to UI
@@ -134,8 +139,47 @@ function closeModal() {
 }
 
 //Example Data
-addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, true);
-addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 304, true, "/hobbit.jpg");
+
+addBookToLibrary(
+  "Wiedźmin Ostatnie Życzenie",
+  "Andrzej Sapkowski",
+  286,
+  true,
+  "/wiedzmin.jpg"
+);
+
+addBookToLibrary(
+  "Wiedźmin Miecz Przeznaczenia",
+  "Andrzej Sapkowski",
+  286,
+  false,
+  "/wiedzmin2.jpg"
+);
+
+addBookToLibrary(
+  "Wiedźmin Krew Elfów",
+  "Andrzej Sapkowski",
+  286,
+  false,
+  "/wiedzmin3.jpg"
+);
+
+addBookToLibrary(
+  "Wiedźmin Chrzest Ognia",
+  "Andrzej Sapkowski",
+  286,
+  false,
+  "/wiedzmin4.jpg"
+);
+
+addBookToLibrary(
+  "Silmarillion",
+  "J.R.R. Tolkien",
+  286,
+  false,
+  "/silmarillion.jpg"
+);
 
 generateLibrary();
 
@@ -148,7 +192,38 @@ addBookBtn.addEventListener("click", () => {
 
 clearListBtn.addEventListener("click", clearLibrary);
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  console.log("Submitted");
+
+  const titleInput = document.querySelector("#title").value;
+  const authorInput = document.querySelector("#author").value;
+  const pagesInput = document.querySelector("#pages").value;
+  const readInput = document.querySelector("#read").value === "true";
+  const imgInput = document.querySelector("#book-img").files[0];
+
+  if (!titleInput || !authorInput || !pagesInput) {
+    alert("Incorrect values! Try again.");
+    return;
+  }
+
+  let imgSrc = "/test.jpg"; // Default image path
+
+  if (imgInput) {
+    imgSrc = await readFileAsDataURL(imgInput);
+  }
+
+  console.log(imgSrc);
+
+  addBookToLibrary(titleInput, authorInput, pagesInput, readInput, imgSrc);
+  generateLibrary();
+  closeModal();
 });
+
+function readFileAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
