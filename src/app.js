@@ -206,7 +206,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  let imgSrc = "/test.jpg"; // Default image path
+  let imgSrc = "/template.jpg"; // Default image path
 
   if (imgInput) {
     imgSrc = await readFileAsDataURL(imgInput);
